@@ -508,7 +508,7 @@ Elevate your professional image with our premium business card service, offering
                     </div>
                         <div class="d-sm-flex justify-content-center mt-5 pb-5">
                 <button type="submit" class="vcard-eight-btn mt-4 d-block btn text-white"
-                        onclick="downloadVcard('login2creations-2.html',1)"><i
+                        onclick="createVCF();"><i
                             class="fas fa-download me-2"></i>Download VCard</button>
                 
                 <button type="button" class="vcard8-share share-btn d-block btn mt-4 ms-sm-3">
@@ -681,6 +681,37 @@ Elevate your professional image with our premium business card service, offering
         nextArrow: '<button class="slide-arrow-blog next-arrow"></button>',
     })
 </script>
+<script>
+function createVCF() {
+    var name = "Printstoreee Services";
+    var image_url = "https://www.google.com/search?q=printstore+&sca_esv=4b73ca8f0ec787dd&";
+    var whatsapp_number = "97431166554";
+    var map_location = "https://maps.app.goo.gl/VfkjWTFhpDP1T6j99";
+    var about = "Digital Printing Services";
+    var email = "printstoreqa@gmail.com";
+
+    var vcard_content = `BEGIN:VCARD
+VERSION:3.0
+FN:${name}
+PHOTO;VALUE=URL:${image_url}
+TEL;TYPE=CELL:${whatsapp_number}
+ADR;TYPE=HOME:;;${map_location}
+NOTE:${about}
+EMAIL:${email}
+END:VCARD`;
+
+    var blob = new Blob([vcard_content], { type: "text/vcard;charset=utf-8" });
+    var url = window.URL.createObjectURL(blob);
+
+    var a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.download = name + ".vcf";
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
+    </script>
 <script>
     let isEdit = false
     let password = ""
